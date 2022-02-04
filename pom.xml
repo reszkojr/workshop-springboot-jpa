@@ -9,11 +9,11 @@
         <version>2.1.7.RELEASE</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.educandoweb</groupId>
+    <groupId>me.reszkojr</groupId>
     <artifactId>course</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>course</name>
-    <description>Course Spring Boot</description>
+    <name>workshop-springboot-jpa</name>
+    <description>Spring Boot App</description>
 
     <properties>
         <java.version>11</java.version>
@@ -47,16 +47,5 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
