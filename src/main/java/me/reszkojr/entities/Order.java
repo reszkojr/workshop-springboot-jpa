@@ -1,6 +1,7 @@
 package me.reszkojr.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import me.reszkojr.entities.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,8 @@ import java.util.Objects;
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private Integer orderStatus;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +29,8 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+        setOrderStatus(orderStatus);
         this.id = id;
         this.moment = moment;
         this.client = client;
@@ -44,6 +48,10 @@ public class Order implements Serializable {
         return client;
     }
 
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,6 +62,11 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus == null) return;
+        this.orderStatus = orderStatus.getCode();
     }
 
     @Override
