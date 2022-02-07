@@ -1,8 +1,10 @@
 package me.reszkojr.config;
 
+import me.reszkojr.entities.Category;
 import me.reszkojr.entities.Order;
 import me.reszkojr.entities.User;
 import me.reszkojr.entities.enums.OrderStatus;
+import me.reszkojr.repositories.CategoryRepository;
 import me.reszkojr.repositories.OrderRepository;
 import me.reszkojr.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,16 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Computers");
+        Category cat3 = new Category(null, "Books");
+
         User u1 = new User(null ,"maria", "maria@gmail.com", "4164894886", "123456");
         User u2 = new User(null,"paulo", "paulo@gmail.com", "498451354", "123456");
 
@@ -32,6 +42,7 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.PAID, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
 
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
     }
